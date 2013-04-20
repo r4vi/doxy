@@ -7,9 +7,12 @@ This file creates your application.
 """
 
 import os
-from flask import Flask, render_template, request, redirect, url_for
-
+from flask import Flask, render_template, request, redirect, url_for, jsonify, Response
+import requests, csv, StringIO
+import json
 app = Flask(__name__)
+
+gdoc_template = "https://docs.google.com/spreadsheet/pub?key={0}&output=csv"
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
@@ -18,16 +21,20 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configur
 # Routing for your application.
 ###
 
-@app.route('/')
-def home():
+@app.route('/<key>/')
+def home(key):
     """Render website's home page."""
-    return render_template('home.html')
+    results = []
 
+    resp = requests.get(gdoc_template.format(key)) 
+    if resp.ok:
+        sio = StringIO.StringIO(resp.content)
+        dr = csv.DictReader(sio)
+        for row in dr:
+            results.append(row)
 
-@app.route('/about/')
-def about():
-    """Render the website's about page."""
-    return render_template('about.html')
+    return Response(response=json.dumps(results), status=200, mimetype='application/json')
+
 
 
 ###
