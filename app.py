@@ -21,6 +21,11 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configur
 # Routing for your application.
 ###
 
+@app.after_request
+def after(response):
+    response.headers.add('Access-Control-Allow-Origin','*')
+
+
 @app.route('/<key>/')
 def home(key):
     """Render website's home page."""
@@ -32,8 +37,10 @@ def home(key):
         dr = csv.DictReader(sio)
         for row in dr:
             results.append(row)
-
-    return Response(response=json.dumps(results), status=200, mimetype='application/json')
+   
+    return Response(response=json.dumps(results), 
+            status=200, 
+            mimetype='application/json')
 
 
 
