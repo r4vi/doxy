@@ -24,6 +24,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configur
 @app.after_request
 def after(response):
     response.headers.add('Access-Control-Allow-Origin','*')
+    return response
 
 
 @app.route('/<key>/')
