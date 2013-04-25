@@ -1,26 +1,12 @@
-Flask Heroku
+Doxy: A Google Docs (Spreadsheet) Proxy
 ============
 
 <pre><code>
-
-
-             ##
- #########  ###
-  ##     #   ##                     :GG   DG
-  ##         ##                     :EE   EE                        ;E
-  ##         ##                     :EE  KK                         ;E
-  ##         ##                     :EE                             ;E
-  ##   #     ##     ####     ####   :EEEEEEG   KEEEE     WE  WEEE;  ;E   EE EE   EE  
-  ######     ##    ##  #f   #   #   :EE   EE  GEf;tEK  EEKK EEfiEE, ;E  fE  EE   EE  
-  ##   #     ##        #l   ##            EE  KE   tE  EK   E;   EE ;E  E,  EE   EE  
-  ##         ##       ##a    ###          EK  EEEEEEE  EK   E    KE ;EEEE   EE   EE  
-  ##         ##    ##  #s     ###         EK  EE       EK   E    KE ;E EE   EE   EE  
-  ##         ##   ##   #k       ##   E    EE  EE       EK   E,   EK ;E  KE  EE   EE  
-  ##         ##   ##   ##W  #   #:   E    EK  ;EK.,EK  EK   EE,:EE, ;E   ED KE.,EEE  
- #####      #####  ### W#   ####,         EK   ,KEEE   K#    DEEK.  iK   WK  KEEE.   
-
-
-                    github.com/zachwill/flask_heroku
+     _                    
+  __| |  ___ __  __ _   _ 
+ / _` | / _ \\ \/ /| | | |
+| (_| || (_) |>  < | |_| |
+ \__,_| \___//_/\_\ \__, |
 
 </code></pre>
 
@@ -28,47 +14,25 @@ Flask Heroku
 What is this?
 -------------
 
-A template to get your [Flask](http://flask.pocoo.org/) app running on
-[Heroku](https://www.heroku.com/) as fast as possible. For added
-convenience, the templates use [Twitter's Bootstrap
-project](http://twitter.github.com/bootstrap/) to help reduce the amount
-of time it's takes you as a developer to go from an idea to a working
-site.
-
-All of the CSS stylesheets are written using the [Less
-CSS](http://lesscss.org/) syntax (even Bootstrap's CSS). If you're using
-Mac OS X for development, make sure to check out [incident57's
-Less.app](http://incident57.com/less/).
-
-Alternatively, there's a [Less binary
-compiler](https://github.com/cloudhead/less.js/) that works similarly on
-the commandline, or you can always use the [`less.js`
-script](https://github.com/cloudhead/less.js/) in your website otherwise
--- it's incredibly fast. For instance, if you visit the [Less CSS
-site](http://lesscss.org), notice that it doesn't link to any CSS files.
-
-Lastly, in Heroku's production environment, your Flask application will
-be served through [`gunicorn`](http://gunicorn.org/) and
-[`gevent`](http://www.gevent.org/).
+Because the JSON that Google provides from Google Spreadsheets is utterly useless, I built this during a hackathon.
 
 
-Why should I use this?
-----------------------
-
-Everything I've learned from writing and maintaining the [Flask
-Engine](https://github.com/zachwill/flask-engine) template for Google
-App Engine has made its way into this repo, too. The goal is to make a
-simple repo that can be cloned and added to for the majority of projects
-going forward, while also staying minimal in size and complexity.
-
+Usage
+-------
+* First of all, create a Google Spreadsheet add your headers to row 1 and freeze it. 
+* Add your data in the rows below. 
+* Then **File > Publish to web** 
+* Copy the KEY from the Google Docs URL
+* Visit the URL at which doxy is running: ````mydoxy.herokuapp.com```` then add the KEY to the end of it ````http://mydoxy.herokuapp.com/KEY/````.
+* Enjoy sexy JSON.
 
 Instructions
 ------------
 
 First, you'll need to clone the repo.
 
-    $ git clone git@github.com:zachwill/flask_heroku.git
-    $ cd flask_heroku
+    $ git clone git@github.com:r4vi/doxy.git
+    $ cd doxy
 
 Second, let's download `pip`, `virtualenv`, `foreman`, and the [`heroku`
 Ruby gem](http://devcenter.heroku.com/articles/using-the-cli).
@@ -163,20 +127,6 @@ simply run the following command:
 
     $ deactivate
 
-
-Next Steps
-----------
-
-After you've got your application up and running, there a couple next
-steps you should consider following.
-
-1. Create a new `README.md` file.
-2. Add your Google Analytics ID to the `base.html` template.
-3. Adjust the `author` and `description` `<meta>` tags in the
-   `base.html` template.
-4. Change the `humans.txt` and `favicon.ico` files in the `static`
-   directory.
-5. Change the `apple-touch` icons in the `static` directory.
 
 
 Reactivating the Virtual Environment
